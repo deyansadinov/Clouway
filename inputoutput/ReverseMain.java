@@ -1,5 +1,6 @@
 package com.clouway.inputoutput;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 
 /**
@@ -7,7 +8,12 @@ import java.io.IOException;
  */
 public class ReverseMain {
   public static void main(String[] args) throws IOException {
-    Reverse rev =new Reverse();
-    rev.readFile("file.txt");
+    Reverse rev = new Reverse();
+
+    try {
+      rev.reverse("file.txt");
+    } catch (FileNotFoundException e) {
+      e.printStackTrace();
+    }
   }
 }

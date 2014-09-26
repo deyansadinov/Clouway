@@ -1,12 +1,6 @@
 package com.clouway.inputoutput;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
-import java.io.InputStream;
+import java.io.*;
 import java.util.Scanner;
 
 /**
@@ -14,29 +8,22 @@ import java.util.Scanner;
  */
 public class Reverse {
 
-  String text = "";
+  /**
+   *
+   * @param fileName
+   * @throws IOException
+   */
+
 
   public void reverse(String fileName) throws IOException {
-    String buffer = readFile(fileName);
-    reverseText(buffer);
-  }
-
-  public String readFile(String fileName) throws IOException {
-    File file = new File(fileName);
-    BufferedReader bf = new BufferedReader(new FileReader(file));
-
-    String txt;
-    while ((txt = bf.readLine())!=null){
-      text+=txt;
-    }
-    return text;
-  }
-  public void reverseText(String text){
-    String reversedText = "";
-    String[] todo =text.split("");
-    for (int i = 0; i < todo.length; i++) {
-      reversedText = todo[todo.length-i-1];
+    Scanner scaner = new Scanner(new File(fileName));
+    StringBuilder bulder = new StringBuilder();
+    while (scaner.hasNextLine()){
+      bulder.append("\n").append(scaner.nextLine());
 
     }
+    FileWriter writer = new FileWriter(fileName);
+    writer.write(bulder.reverse().toString());
+    writer.flush();
   }
 }

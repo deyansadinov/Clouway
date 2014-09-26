@@ -18,12 +18,12 @@ public class ElementsList {
    * Add element to the array
    *
    * @param obj
-   * @throws RollFullException
+   * @throws FullListException
    */
 
   public void add(Object obj) {
     if (roll.length == index) {
-      throw new RollFullException();
+      throw new FullListException();
     }
     roll[index] = obj;
     index++;
@@ -31,13 +31,13 @@ public class ElementsList {
 
   /**
    * Remove the last element of the roll
-   * @throws com.clouway.exception.elements.EmptyRollException
+   * @throws EmptyListRemovalException
    */
 
 
   public void remove() {
     if (index == 0) {
-      throw new EmptyRollException();
+      throw new EmptyListRemovalException();
     }
     roll[index - 1] = null;
     index--;

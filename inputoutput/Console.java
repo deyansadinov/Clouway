@@ -12,23 +12,18 @@ public class Console {
   private Scanner scr = new Scanner(System.in);
 
   public String readString() {
-    String str = scr.next();
-    return str;
+    return scr.next();
   }
 
   public int readInt() {
-    int num = scr.nextInt();
-    scr.nextLine();
-    return num;
+    return scr.nextInt();
   }
 
-  public char readChar(){
-    char ch = scr.next().charAt(0);
-    return ch;
+  public char readChar() {
+    return scr.next().charAt(0);
   }
 
-  public float readFloat(){
-    float fl = scr.nextFloat();
-    return fl;
+  public float readFloat() {
+    return scr.nextFloat();
   }
 }

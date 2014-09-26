@@ -7,7 +7,7 @@ import java.io.IOException;
  */
 public class ReadMain {
   public static void main(String[] args) throws IOException {
-    Read rd = new Read();
-    rd.readFile();
+    Reader reader = new Reader();
+    reader.readFile();
   }
 }

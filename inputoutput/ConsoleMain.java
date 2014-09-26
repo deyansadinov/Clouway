@@ -8,7 +8,7 @@ public class ConsoleMain {
 
     Console con = new Console();
 
-    System.out.println("Please enter a integer");
+    System.out.println("Please enter an integer");
     int num = con.readInt();
     System.out.println(num);
 

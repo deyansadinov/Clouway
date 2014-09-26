@@ -1,10 +1,7 @@
 package com.clouway.inputoutput;
 
 
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.PrintWriter;
+import java.io.*;
 import java.util.Scanner;
 
 /**
@@ -15,31 +12,23 @@ import java.util.Scanner;
 
 //Четенето спира при въвеждане на ред съдържащ само една точка ".". В началото да се указва името на създавания файл.
 
-public class Read {
+public class Reader {
 
   private Scanner scan = new Scanner(System.in);
-  private String text;
-  private PrintWriter outputStream;
 
-  public void create() throws IOException {
-    File file = new File("file.txt");
-    if (file.createNewFile()){
-
-      System.out.println("The file is created");
-    }
-  }
   public  void readFile() throws IOException {
-    create();
-
+    Writer writer = null;
     try{
-      outputStream = new PrintWriter(new FileWriter("file.txt"));
+      writer = new BufferedWriter(new FileWriter("file.txt",true));
+
+      String text;
       while (!(text = scan.nextLine()).equals(".")){
-        outputStream.write(text);
+        writer.write(text);
       }
     }
     finally {
-      if (outputStream != null){
-        outputStream.close();
+      if (writer != null){
+        writer.close();
       }
     }
   }

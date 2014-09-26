@@ -13,14 +13,14 @@ public class ElementsListMain {
     Animals a2 = new Animals("Maks");
     Animals a3 = new Animals("Boiko");
     Animals a4 = new Animals("Sabko");
-    try {
-      list.add(a1);
-      list.add(a2);
-      list.add(a3);
-      list.add(a4);
-    } catch (RollFullException e) {
-      System.out.println(e.toString());
-    }
+//    try {
+//      list.add(a1);
+//      list.add(a2);
+//      list.add(a3);
+//      list.add(a4);
+//    } catch (FullListException e) {
+//      System.out.println(e.toString());
+//    }
 
     list.printAllElements();
 
@@ -28,11 +28,11 @@ public class ElementsListMain {
 
     try {
       list.remove();
-    } catch (EmptyRollException e) {
+    } catch (EmptyListRemovalException e) {
       System.out.println(e.toString());
     }
 
-    list.printAllElements();
+
 
   }
 }
