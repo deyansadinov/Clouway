@@ -1,4 +1,4 @@
-package com.clouway.hetTree;
+package com.clouway.hettree;
 
 /**
  * Created by clouway on 14-9-16.

@@ -18,11 +18,14 @@ public class Reader {
 
   public  void readFile() throws IOException {
     Writer writer = null;
+    String br = scan.nextLine();
+    String fileName = scan.nextLine();
+
     try{
-      writer = new BufferedWriter(new FileWriter("file.txt",true));
+      writer = new BufferedWriter(new FileWriter(fileName,true));//open the file and append every time the text in to the file
 
       String text;
-      while (!(text = scan.nextLine()).equals(".")){
+      while (!(text = scan.nextLine()).equals(br)){
         writer.write(text);
       }
     }

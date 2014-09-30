@@ -1,4 +1,4 @@
-package com.clouway.hetTree;
+package com.clouway.hettree;
 
 
 public class HeterogeneousTree {

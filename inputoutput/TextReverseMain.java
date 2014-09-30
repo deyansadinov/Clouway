@@ -6,9 +6,9 @@ import java.io.IOException;
 /**
  * Created by clouway on 14-9-25.
  */
-public class ReverseMain {
+public class TextReverseMain {
   public static void main(String[] args) throws IOException {
-    Reverse rev = new Reverse();
+    TextReverse rev = new TextReverse();
 
     try {
       rev.reverse("file.txt");
