@@ -16,7 +16,7 @@ public class Reader {
 
   private Scanner scan = new Scanner(System.in);
 
-  public  void readFile() throws IOException {
+  public  void read() throws IOException {
     Writer writer = null;
     String br = scan.nextLine();
     String fileName = scan.nextLine();

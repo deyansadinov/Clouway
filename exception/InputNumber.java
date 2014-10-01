@@ -34,11 +34,11 @@ public class InputNumber {
 
         return;
       }catch (NumberOutOfBoundsException e){
-        System.out.println(e.toString());
+        System.out.println(e.getMessage());
       }catch (InputMismatchException e){
         System.out.println("The number you have entered is not a valid integer , please try again");
       }catch (InvalidIntervalBoundsException e ){
-        System.out.println(e.toString());
+        System.out.println(e.getMessage());
       }finally {
         src.close();
       }

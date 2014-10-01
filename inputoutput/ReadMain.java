@@ -11,6 +11,6 @@ public class ReadMain {
     System.out.println("PLease enter a symbol for breaking point ");
     System.out.println("Please enter a name for the file");
     System.out.println("Please enter some text");
-    reader.readFile();
+    reader.read();
   }
 }
