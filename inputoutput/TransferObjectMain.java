@@ -19,7 +19,7 @@ public class TransferObjectMain {
     try {
       in = new FileInputStream("file.txt");
       out = new FileOutputStream("text2.txt");
-      System.out.println("The number of the transferred bytes is : " + transferObject.transfer(in, out, -1, 10));
+      System.out.println("The number of the transferred bytes is : " + transferObject.transfer(in, out,7,0));
     } catch (IllegalArgumentException e) {
       System.out.println("The offset is not a negative number and numberOfBytes is not less then -1");
     } finally {

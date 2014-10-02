@@ -1,5 +1,7 @@
 package com.clouway.inputoutput;
 
+import java.io.BufferedInputStream;
+import java.io.FileInputStream;
 import java.io.InputStream;
 import java.util.Scanner;
 
@@ -8,14 +10,14 @@ import java.util.Scanner;
  */
 
 // Да се направи клас, който чете от конзолата. Трябва да има следните методи:
-public class Console {
-
+public class FileReader {
 
 
   private Scanner scr = new Scanner(System.in);
 
-  public Console(InputStream in){
+  public FileReader(InputStream in) {
     this.scr = new Scanner(in);
+
   }
 
   public String readString() {
@@ -23,8 +25,6 @@ public class Console {
   }
 
   public int readInt() {
-    //int num = scr.nextInt();
-    // scr.hasNextLine();
     return scr.nextInt();
   }
 
@@ -34,5 +34,9 @@ public class Console {
 
   public float readFloat() {
     return scr.nextFloat();
+
   }
+
+
+
 }

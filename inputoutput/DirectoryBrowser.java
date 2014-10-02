@@ -5,7 +5,7 @@ import java.io.File;
 /**
  * @author Deyan Sadinov <sadinov88@gmail.com> on 14-9-29.
  */
-public class Browser {
+public class DirectoryBrowser {
   public void listContent(String absolutePath) {
     File file = new File(absolutePath);
     if (file.isDirectory()) {
