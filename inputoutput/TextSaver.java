@@ -16,9 +16,7 @@ public class TextSaver {
 
   private Scanner scan = new Scanner(System.in);
 
-//  public TextSaver(InputStream in) {
-//    this.scan = new Scanner(in);
-//  }
+
 
   public  void writeText() throws IOException {
     Writer writer = null;

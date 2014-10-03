@@ -1,8 +1,6 @@
 package com.clouway.inputoutput;
 
-import java.io.BufferedInputStream;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 
@@ -15,7 +13,7 @@ public class FileReaderMain {
     InputStream in = new FileInputStream("consolefile.txt");
     InputStream in2 = System.in;
 
-    FileReader con = new FileReader(in);
+    Reader con = new Reader(in2);
 
     System.out.println("Please enter an integer");
     System.out.println(con.readInt());

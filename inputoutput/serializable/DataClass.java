@@ -14,11 +14,8 @@ public class DataClass {
 
 
   public void saveObject(OutputStream out, Object o) throws IOException {
-
     ObjectOutputStream output = new ObjectOutputStream(out);
     output.writeObject(o);
-    System.out.println("The data is saved to file animal.ser");
-
   }
 
   public Object getObject(InputStream in) throws IOException {
@@ -27,7 +24,6 @@ public class DataClass {
       ObjectInput input = new ObjectInputStream(in);
       object = input.readObject();
     } catch (ClassNotFoundException e) {
-      System.out.println("Class not found");
       e.printStackTrace();
     }
     return object;
