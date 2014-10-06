@@ -12,39 +12,27 @@ import java.util.Scanner;
 
 //Четенето спира при въвеждане на ред съдържащ само една точка ".". В началото да се указва името на създавания файл.
 
-public class TextSaver {
+public class FileHandler {
 
-  private Scanner scan = new Scanner(System.in);
-
-
-
-  public  void writeText() throws IOException {
-    Writer writer = null;
-    String br = scan.nextLine();
-    String fileName = scan.nextLine();
-
+  public boolean writeTextToBreakPoint(String fileNam, String text, String breakPoint) throws IOException {
+    FileWriter fileWriter = null;
+    boolean textWritten = false;
     try{
-      writer = new BufferedWriter(new FileWriter(fileName,true));
-
-      String text;
-      while (!(text = scan.nextLine()).equals(br)){
-
-        writer.append("\n").write(text);
+      fileWriter = new FileWriter(fileNam,true);
+      if (!(text.equals(breakPoint))){
+        fileWriter.write(text);
+        fileWriter.write("\n");
+        textWritten = true;
+      }
+    }catch (IOException e){
+      e.printStackTrace();
+    }finally {
+      if (fileWriter != null){
+        fileWriter.close();
       }
     }
-    finally {
-      if (writer != null) {
-        writer.close();
-      }
-        if (scan != null){
-          scan.close();
-        }
-
-    }
+    return textWritten;
   }
-
-
-
 
 
 }
