@@ -7,21 +7,11 @@ import java.util.List;
  */
 public class Page {
 
-  private int  pageNumber;
-  private List<String> page;
+  int pageNumber;
+  List<String> page;
 
-  public Page(List<String> page,int numberOfPage) {
+  public Page(List<String> page, int numberOfPage) {
     this.pageNumber = numberOfPage;
     this.page = page;
-  }
-
-  /**
-   * Print the content of the console
-   */
-  public void pagePrint(){
-    System.out.println("page :" + pageNumber + ": ");
-    for (String pageSize : page){
-      System.out.println(pageSize);
-    }
   }
 }
