@@ -8,14 +8,14 @@ import java.util.List;
  */
 public class PageBean {
 
-  private int pageSize ;
-  private int fromIndex = 0;
-  private int toIndex = 0;
-  private List<String> elements;
+  private int pageSize;
+  private int index = 0;
+
+  private List<Integer> elements;
   private int numberOfPage = 0;
 
-  public PageBean(List<String> listOfPages, int pageSize) {
-    this.elements = listOfPages;
+  public PageBean(List<Integer> elements, int pageSize) {
+    this.elements = elements;
     this.pageSize = pageSize;
 
   }
@@ -28,16 +28,20 @@ public class PageBean {
 
   public List<Object> next() {
     List<Object> next = new ArrayList<>();
-
-    if (toIndex + pageSize > elements.size()) {
-      System.out.println(elements.get(toIndex));
-    } else {
-      for (Object o : elements.subList(fromIndex,maxSize())){
+    //Check to see end of book
+    int ednIndex = index + pageSize;
+    if (ednIndex > elements.size()) {
+      ednIndex = elements.size();
+      for (Object o : elements.subList(index, ednIndex)) {
         next.add(o);
       }
+      return next;
     }
-    fromIndex += pageSize;
-    toIndex += pageSize;
+
+    for (Object o : elements.subList(index, ednIndex)) {
+      next.add(o);
+    }
+    index += pageSize;
     numberOfPage++;
     return next;
   }
@@ -47,17 +51,37 @@ public class PageBean {
    *
    * @return
    */
-
-  public List<Object> previous(){
+  public List<Object> previous() {
     List<Object> previous = new ArrayList<>();
-    fromIndex -= pageSize;
-    for (Object o : elements.subList(fromIndex,maxSize())) {
-      System.out.println(o);
+    index -= pageSize;
+    int endIndex = index + pageSize;
+    if (endIndex > elements.size()) {
+      endIndex = elements.size();
+      for (Object o : elements.subList(index, endIndex)) {
+        previous.add(o);
+      }
+      return previous;
     }
-    toIndex -= pageSize;
+    for (Object o : elements.subList(index, endIndex)) {
+      previous.add(o);
+    }
     numberOfPage--;
     return previous;
   }
+//  public List<Object> previous() {
+//    List<Object> output = new ArrayList<>();
+//    index -= pageSize * 2;
+//    for (Object d : elements.subList(index, index + pageSize)) {
+//      output.add(d);
+//    }
+//    index += pageSize;
+//    System.out.println();
+//    if (index < 0) {
+//      throw new IndexOutOfBoundsException();
+//    }
+//    pageNumber--;
+//    return output;
+//  }
 
 
   /**
@@ -66,7 +90,10 @@ public class PageBean {
    * @return true if there is next page and false if there is no page
    */
   public boolean hasNext() {
-    return (fromIndex + toIndex) < elements.size();
+    if (index <= elements.size() / pageSize) {
+      return true;
+    }
+    return false;
   }
 
   /**
@@ -75,13 +102,8 @@ public class PageBean {
    * @return true if there is previous page and false if there is no page
    */
   public boolean hasPrevious() {
-    return (toIndex != pageSize) ? true : false;
-//    for (ListIterator it = elements.listIterator(toIndex); it.hasPrevious(); ) {
-//      if (it.hasPrevious()) {
-//        return true;
-//      }
-//    }
-//    return false;
+    return (index >= pageSize);
+
   }
 
 
@@ -90,11 +112,9 @@ public class PageBean {
    *
    * @return
    */
-  public void firstPage() {
-    fromIndex = 0;
-    toIndex = pageSize;
-    numberOfPage = 1;
-
+  public int firstPage() {
+    index = 1;
+    return numberOfPage = 1;
 
   }
 
@@ -104,9 +124,9 @@ public class PageBean {
    * @return
    */
   public void lastPage() {
-    fromIndex = elements.size() - (elements.size() % pageSize);
-    toIndex = elements.size();
-    numberOfPage = (fromIndex / pageSize);
+    index = elements.size() + ((elements.size() % pageSize));
+
+    numberOfPage = (index / pageSize);
 
 
   }
@@ -117,22 +137,11 @@ public class PageBean {
    * @return the number of the page
    */
   public int getCurrentPageNumber() {
-    if (numberOfPage <= elements.size() / pageSize) {
-      return numberOfPage;
-    }
     return numberOfPage;
   }
 
-  /**
-   * Check toIndex is greater than the size of the list
-   *
-   * @return toIndex if it is less than the size of the list
-   * or return the size of the list
-   */
-  private int maxSize() {
-    return toIndex > elements.size() ? elements.size() : toIndex;
-  }
-
-
 
 }
+
+
+
