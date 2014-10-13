@@ -10,7 +10,6 @@ public class PageBean {
 
   private int pageSize;
   private int index = 0;
-
   private List<Integer> elements;
   private int numberOfPage = 0;
 
@@ -21,101 +20,51 @@ public class PageBean {
   }
 
   /**
-   * Go to the next page.If there is no page return error message
-   *
+   * Show the current page number
    * @return
    */
-
-  public List<Object> next() {
-    List<Object> next = new ArrayList<>();
-    //Check to see end of book
-    int ednIndex = index + pageSize;
-    if (ednIndex > elements.size()) {
-      ednIndex = elements.size();
-      for (Object o : elements.subList(index, ednIndex)) {
-        next.add(o);
-      }
-      return next;
-    }
-
-    for (Object o : elements.subList(index, ednIndex)) {
-      next.add(o);
-    }
-    index += pageSize;
-    numberOfPage++;
-    return next;
+  public int getCurrentPageNumber(){
+    return numberOfPage;
   }
 
   /**
-   * Go to the previous page.If there is no page display message
-   *
+   * Calculates total page number
    * @return
    */
-  public List<Object> previous() {
-    List<Object> previous = new ArrayList<>();
-    index -= pageSize;
-    int endIndex = index + pageSize;
-    if (endIndex > elements.size()) {
-      endIndex = elements.size();
-      for (Object o : elements.subList(index, endIndex)) {
-        previous.add(o);
-      }
-      return previous;
-    }
-    for (Object o : elements.subList(index, endIndex)) {
-      previous.add(o);
-    }
-    numberOfPage--;
-    return previous;
-  }
-//  public List<Object> previous() {
-//    List<Object> output = new ArrayList<>();
-//    index -= pageSize * 2;
-//    for (Object d : elements.subList(index, index + pageSize)) {
-//      output.add(d);
-//    }
-//    index += pageSize;
-//    System.out.println();
-//    if (index < 0) {
-//      throw new IndexOutOfBoundsException();
-//    }
-//    pageNumber--;
-//    return output;
-//  }
-
-
-  /**
-   * Check if there is next element
-   *
-   * @return true if there is next page and false if there is no page
-   */
-  public boolean hasNext() {
-    if (index <= elements.size() / pageSize) {
-      return true;
-    }
-    return false;
+  private int getLastPageNumber(){
+    return elements.size() / pageSize + ((elements.size() % pageSize !=0) ? 1 : 0);
   }
 
   /**
-   * Check if there is previous element
    *
-   * @return true if there is previous page and false if there is no page
+   * @return subList of the this.elements ArrayList
    */
-  public boolean hasPrevious() {
-    return (index >= pageSize);
-
+  public List<Integer> currentPage(){
+    ArrayList<Integer> currentPage = new ArrayList<Integer>();
+    index = getCurrentPageFirstIndex();
+    int currentPageLastIndex = getCurrentPageLastIndex();
+    for (Integer integer : elements.subList(index, currentPageLastIndex)) {
+      currentPage.add(integer);
+    }
+    return currentPage;
   }
 
+  /**
+   *
+   * @return return element first index of the current page
+   */
+  public int getCurrentPageFirstIndex() {
+    return (numberOfPage -1) * pageSize;
+  }
 
   /**
-   * Go to the first page and make it current
    *
-   * @return
+   * @return return element last index if the current page
    */
-  public int firstPage() {
-    index = 1;
-    return numberOfPage = 1;
-
+  private int getCurrentPageLastIndex(){
+    int lastIndex = index + pageSize;
+    int currentPageLastIndex = (lastIndex < elements.size())?lastIndex:elements.size();
+    return currentPageLastIndex;
   }
 
   /**
@@ -123,24 +72,66 @@ public class PageBean {
    *
    * @return
    */
-  public void lastPage() {
-    index = elements.size() + ((elements.size() % pageSize));
-
-    numberOfPage = (index / pageSize);
-
-
+  public List<Integer> lastPage(){
+    numberOfPage = getLastPageNumber();
+    index = getCurrentPageFirstIndex();
+    return currentPage();
   }
 
   /**
-   * Show the number of the current page
+   * Go to the first page and make it current
    *
-   * @return the number of the page
+   * @return
    */
-  public int getCurrentPageNumber() {
-    return numberOfPage;
+  public List<Integer> firstPage(){
+    numberOfPage = 1;
+    index = getCurrentPageFirstIndex();
+    return currentPage();
   }
 
+  /**
+   * Check if there is next page
+   * @return true if there is next page and false if is no page
+   */
+  public boolean hasNext(){
+    int nextPageNumber = numberOfPage + 1;
+    return (nextPageNumber <= getLastPageNumber());
+  }
 
+  /**
+   * Check if there is previous page
+   * @return true if there is previous page and false if is no page
+   */
+  public boolean hasPrevious(){
+    int previousPageNumber = numberOfPage - 1;
+    return (previousPageNumber >= 1 );
+  }
+
+  /**
+   * Go to the next page
+   * @return
+   */
+  public List<Integer> next(){
+    if (!hasNext()){
+      return null;
+    }
+    numberOfPage++;
+    index = getCurrentPageFirstIndex();
+    return currentPage();
+  }
+
+  /**
+   * Go to the previous page
+   * @return
+   */
+  public List<Integer> previous(){
+    if (!hasPrevious()){
+      return null;
+    }
+    numberOfPage--;
+    index = getCurrentPageFirstIndex();
+    return currentPage();
+  }
 }
 
 

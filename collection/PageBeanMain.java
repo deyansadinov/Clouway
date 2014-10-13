@@ -34,50 +34,36 @@ public class PageBeanMain {
 
     PageBean pageList = new PageBean(listMessage, 2);
 
-     System.out.println(pageList.firstPage());
-    System.out.println("The first page is <> " + pageList.getCurrentPageNumber());
-    System.out.println("Is there a next page <> " +pageList.hasNext());
-    System.out.println("Is there a previous page <> "+pageList.hasPrevious());
-    System.out.println();
 
-    System.out.println(pageList.next().toString());
-   System.out.println("next page");
-    System.out.println("The current page is <> "+ pageList.getCurrentPageNumber());
-    System.out.println("Is there a next page <> " +pageList.hasNext());
-    System.out.println("Is there a previous page <> "+pageList.hasPrevious());
-    System.out.println();
 
-    System.out.println(pageList.next().toString());
-    System.out.println("next page");
-    System.out.println("The current page is <> "+ pageList.getCurrentPageNumber());
-    System.out.println("Is there a next page <> " +pageList.hasNext());
-    System.out.println("Is there a previous page <> "+pageList.hasPrevious());
-    System.out.println();
+    System.out.println("Traversing from first to last page");
 
-    System.out.println(pageList.previous().toString());
-    System.out.println("previous page");
-    System.out.println("The current page is <> "+ pageList.getCurrentPageNumber());
-    System.out.println("Is there a next page <> " +pageList.hasNext());
-    System.out.println("Is there a previous page <> "+pageList.hasPrevious());
-    System.out.println();
-//
-//    pageList.next();
-//    System.out.println("The current page is <> "+ pageList.getCurrentPageNumber());
-//    System.out.println("Is there a next page <> " +pageList.hasNext());
-//    System.out.println("Is there a previous page <> "+pageList.hasPrevious());
-//    System.out.println();
-//
-////    pageList.previous();
-////    System.out.println("The current page is <> "+ pageList.getCurrentPageNumber());
-////    System.out.println("Is there a next page <> " +pageList.hasNext());
-////    System.out.println("Is there a previous page <> "+pageList.hasPrevious());
-////    System.out.println();
-//
-//    pageList.lastPage();
-//    System.out.println("The last page is <> "+ pageList.getCurrentPageNumber());
-//    System.out.println("Is there a next page <> " +pageList.hasNext());
-//    System.out.println("Is there a previous page <> "+pageList.hasPrevious());
+    List<Integer> currentPage = pageList.firstPage();
+    System.out.println("The current page number is <> " + pageList.getCurrentPageNumber());
+    System.out.println("The current page elements are <> " + currentPage.toString());
+    System.out.println("Is there a next page <> " + pageList.hasNext());
+    System.out.println("Is there a previous page <> " + pageList.hasPrevious());
+    while (pageList.hasNext()){
+      currentPage = pageList.next();
+      System.out.println("\nThe current page number is <> " + pageList.getCurrentPageNumber());
+      System.out.println("The current page elements are <> " + currentPage.toString());
+      System.out.println("Is there a next page <> " + pageList.hasNext());
+      System.out.println("Is there a previous page <> " + pageList.hasPrevious());
+    }
 
+    System.out.println("\nTraversing from last to first page");
+    currentPage = pageList.lastPage();
+    System.out.println("The current page number is <> " + pageList.getCurrentPageNumber());
+    System.out.println("The current page elements are <> " + currentPage.toString());
+    System.out.println("Is there a next page <> " + pageList.hasNext());
+    System.out.println("Is there a previous page <> " + pageList.hasPrevious());
+    while (pageList.hasPrevious()){
+      currentPage = pageList.previous();
+      System.out.println("\nThe current page number is <> " + pageList.getCurrentPageNumber());
+      System.out.println("The current page elements are <> " + currentPage.toString());
+      System.out.println("Is there a next page <> " + pageList.hasNext());
+      System.out.println("Is there a previous page <> " + pageList.hasPrevious());
+    }
   }
 }
 
