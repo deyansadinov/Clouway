@@ -20,7 +20,7 @@ class Person {
   }
 
   public String toString() {
-    return "{ID is :"+id + "; name is : " + name + "}";
+    return "{ID is :" + id + "; name is : " + name + "}";
 
   }
 
@@ -45,13 +45,12 @@ class Person {
   }
 }
 
-
-public class Test2 {
+  public class Test2 {
   public static void main(String[] args) {
     Person p1 = new Person(0, "Dido");
     Person p2 = new Person(1,"bob");
     Person p3 = new Person(2,"max");
-    Person p4 = new Person(1,"bob");
+    Person p4 = new Person(1,"bob1");
     Map<Person, Integer> map = new LinkedHashMap<Person, Integer>();
 
     map.put(p1, 1);

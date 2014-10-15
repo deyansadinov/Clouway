@@ -18,7 +18,9 @@ public class ExceptionsMessageManagerMain  {
       manager.registerErrorMessage("2" , "Wrong PIN");
       manager.registerErrorMessage("3" , "Invalid post code");
       manager.registerErrorMessage("4" , "Wrong card");
-      System.out.println(manager.raiseError("2"));
+      manager.raiseError("2");
+      manager.raiseError("4");
+     // System.out.println(manager.raiseError("2"));
       System.out.println(manager.getErrorMessages());
     }catch (IllegalMessageException e) {
       e.getMessage();
