@@ -14,14 +14,14 @@ import java.util.Scanner;
  */
 public class PageBeanMain {
   public static void main(String[] args) {
-    List<Integer> listMessage = new ArrayList<>();
+    List<Integer> elementList = new ArrayList<>();
 
-    listMessage.add(1);
-    listMessage.add(2);
-    listMessage.add(3);
-    listMessage.add(4);
-    listMessage.add(5);
-//    listMessage.add("6");
+    elementList.add(1);
+    elementList.add(2);
+    elementList.add(3);
+    elementList.add(4);
+    elementList.add(5);
+//    listMessage.add(6);
 //    listMessage.add("7");
 //    listMessage.add("8");
 //    listMessage.add("9");
@@ -32,7 +32,7 @@ public class PageBeanMain {
 //    listMessage.add("14");
 //    listMessage.add("15");
 
-    PageBean pageList = new PageBean(listMessage, 2);
+    PageBean pageList = new PageBean(elementList, 2);
 
 
 

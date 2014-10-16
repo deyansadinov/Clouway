@@ -6,9 +6,14 @@ package com.clouway.test;
 public class BMW {
   private int a;
   private  int b;
+  public BMW(String a  , String b) {
+      this.a = Integer.parseInt(a);
+      this.b = Integer.parseInt(b);
+  }
+
   public BMW(int a, int b) {
-      this.a = a;
-      this.b = b;
+    this.a =a;
+    this.b = b;
   }
 
   public int sum() {

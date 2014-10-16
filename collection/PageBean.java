@@ -9,9 +9,9 @@ import java.util.List;
 public class PageBean {
 
   private int pageSize;
-  private int index = 0;
+  //  private int index = 0;
   private List<Integer> elements;
-  private int numberOfPage = 0;
+  private int pageNumber = 0;
 
   public PageBean(List<Integer> elements, int pageSize) {
     this.elements = elements;
@@ -25,7 +25,7 @@ public class PageBean {
    * @return
    */
   public int getCurrentPageNumber() {
-    return numberOfPage;
+    return pageNumber;
   }
 
   /**
@@ -34,34 +34,34 @@ public class PageBean {
    * @return
    */
   private int getLastPageNumber() {
-    return (int) Math.ceil(elements.size() / pageSize);
+//    return (int) Math.ceil(elements.size() / pageSize);
+    return elements.size() / pageSize + ((elements.size() % pageSize != 0) ? 1 : 0);
+
   }
 
   /**
    * @return subList of the this.elements ArrayList
    */
   public List<Integer> currentPage() {
-    ArrayList<Integer> currentPage = new ArrayList<Integer>();
-    index = getFirstIndex();
-    int currentPageLastIndex = getLastIndex();
-     elements.subList(index, currentPageLastIndex);
+//    ArrayList<Integer> currentPage = new ArrayList<Integer>();
+    return elements.subList(getFirstIndex(), getLastIndex());
+//       currentPage.add(e);
 
-    return currentPage;
+    //return currentPage;
   }
 
   /**
    * @return return element first index of the current page
    */
-  public int getFirstIndex() {
-    return (numberOfPage - 1) * pageSize;
+  private int getFirstIndex() {
+    return (pageNumber - 1) * pageSize;
   }
 
   /**
    * @return return element last index if the current page
    */
   private int getLastIndex() {
-    int lastIndex = index + pageSize;
-
+    int lastIndex = pageNumber * pageSize;
     return (lastIndex < elements.size()) ? lastIndex : elements.size();
   }
 
@@ -71,8 +71,8 @@ public class PageBean {
    * @return
    */
   public List<Integer> lastPage() {
-    numberOfPage = getLastPageNumber();
-    index = getFirstIndex();
+    pageNumber = getLastPageNumber();
+//    index = getFirstIndex();
     return currentPage();
   }
 
@@ -82,8 +82,8 @@ public class PageBean {
    * @return
    */
   public List<Integer> firstPage() {
-    numberOfPage = 1;
-    index = getFirstIndex();
+    pageNumber = 1;
+//    index = getFirstIndex();
     return currentPage();
   }
 
@@ -93,7 +93,7 @@ public class PageBean {
    * @return true if there is next page and false if is no page
    */
   public boolean hasNext() {
-    int nextPageNumber = numberOfPage + 1;
+    int nextPageNumber = pageNumber + 1;
     return (nextPageNumber <= getLastPageNumber());
   }
 
@@ -103,7 +103,7 @@ public class PageBean {
    * @return true if there is previous page and false if is no page
    */
   public boolean hasPrevious() {
-    int previousPageNumber = numberOfPage - 1;
+    int previousPageNumber = pageNumber - 1;
     return (previousPageNumber >= 1);
   }
 
@@ -116,8 +116,8 @@ public class PageBean {
     if (!hasNext()) {
       return null;
     }
-    numberOfPage++;
-    index = getFirstIndex();
+    pageNumber++;
+//    index = getFirstIndex();
     return currentPage();
   }
 
@@ -130,8 +130,8 @@ public class PageBean {
     if (!hasPrevious()) {
       return null;
     }
-    numberOfPage--;
-    index = getFirstIndex();
+    pageNumber--;
+//    index = getFirstIndex();
     return currentPage();
   }
 }
