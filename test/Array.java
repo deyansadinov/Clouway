@@ -18,9 +18,10 @@ public class Array {
    * Print the array
    */
 
-  public void printArray() {
+  public void printArray(Display display) {
+
     for (int anArray : array) {
-      System.out.println(anArray);
+      display.display(anArray);
     }
   }
 
