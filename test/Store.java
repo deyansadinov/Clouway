@@ -1,27 +1,49 @@
 package com.clouway.test;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashMap;
-import java.util.List;
 
 /**
  * @author Deyan Sadinov <sadinov88@gmail.com>
  */
 public class Store {
 
-  HashMap<String,Products> storeMap = new HashMap<>();
+  HashMap<String, Products> storeHolder = new HashMap<>();
+
   public int sell(String name, int quantity) {
-    if (storeMap.size() == 0) {
-      throw new EmptyStoreException();
+    if (storeHolder.size() == 0) {
+      throw new StoreProblemException();
     }
-    if (storeMap.get(name) == null){
-      throw new EmptyStoreException();
+    if (storeHolder.get(name) == null) {
+      throw new StoreProblemException();
     }
-      return 9;
+    Products products = storeHolder.get(name);
+    return products.getCurrentQuantity(quantity);
   }
-  public int add(String name, Products products) {
-    storeMap.put(name,products);
-    return storeMap.size();
+
+  public Products addNewProduct(String name, Products products) {
+    storeHolder.put(name, products);
+    return storeHolder.get(name);
   }
+
+
+//  private class ProductSlot {
+//    private final Products products;
+//    private  int currentQuantity;
+//    private final int maxQuantity;
+//
+//    private ProductSlot(Products products,int currentQuantity,int maxQuantity) {
+//
+//      this.products = products;
+//      this.currentQuantity = currentQuantity;
+//      this.maxQuantity = maxQuantity;
+//    }
+//
+//    public int getMaxQuantity() {
+//      return maxQuantity;
+//    }
+//
+//    public int getCurrentQuantity() {
+//      return currentQuantity;
+//    }
+//  }
 }
