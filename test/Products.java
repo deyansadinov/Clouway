@@ -7,8 +7,8 @@ public class Products {
 
   private final String name;
   private final double price;
-  private int currentQuantity;
-  private int maxQuantity;
+  private final int currentQuantity;
+  private final int maxQuantity;
 
 
   public Products(String name, double price, int currentQuantity, int maxQuantity ) {
@@ -38,6 +38,10 @@ public class Products {
 
   public double getPrice() {
     return price;
+  }
+
+  public String getProduct(){
+    return name ;
   }
 
 
