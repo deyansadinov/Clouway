@@ -5,6 +5,8 @@ import java.util.Collections;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
 
 /**
  * @author Deyan Sadinov <sadinov88@gmail.com>
@@ -33,6 +35,23 @@ public class Store2 {
     return productSlot.add(quantity);
   }
 
+  public void sellOrder(OrderList orderList){
+   Map<String,Integer> orders = orderList.getOrder();
+    for (Entry<String,Integer> entry : orders.entrySet()  ){
+      String productName = entry.getKey();
+      int quantity = entry.getValue();
+      sell(productName,quantity);
+    }
+  }
+
+  public void addToOrder(OrderList myList) {
+    Map<String,Integer> orders = myList.getOrder();
+    for (Entry<String,Integer> entry : orders.entrySet()  ){
+      String productName = entry.getKey();
+      int quantity = entry.getValue();
+      addToProduct(productName,quantity);
+    }
+  }
 
   public List<Product2> sort(SortByPrice sortByPrice) {
     List<Product2> listProduct = new ArrayList<>();
@@ -66,21 +85,21 @@ public class Store2 {
       this.currentQuantity = currentQuantity;
     }
 
-    public int sell(int quantity) {
+    private int sell(int quantity) {
       if (currentQuantity - quantity < 0) {
         throw new StoreProblemException();
       }
       return  currentQuantity -= quantity;
     }
 
-    public Integer add(int quantity) {
+    private Integer add(int quantity) {
       if (currentQuantity + quantity > maxQuantity) {
         throw new StoreProblemException();
       }
       return currentQuantity += quantity;
     }
 
-    public Product2 getProduct() {
+    private Product2 getProduct() {
       return product;
     }
   }
